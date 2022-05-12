@@ -1,0 +1,77 @@
+<div *ngIf="showWindow" class="container card">
+    <h3 class="card-header bg-dark text-light">Sukurkite naują teisių grupę</h3>
+    <form class="card-body" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group">
+            <label for="group_name">Pavadinimas</label>
+            <input type="text" formControlName="group_name" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f['group_name'].errors }" />
+            <div *ngIf="submitted && f['group_name'].errors" class="invalid-feedback">
+                <div *ngIf="f['group_name'].errors['required']">Pavadinimas yra privalomas</div>
+            </div>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="video_create"/>
+            <label for="video_create">Kurti vaizdo įrašus</label>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="video_edit"/>
+            <label for="video_edit">Redaguoti vaizdo įrašus</label>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="video_delete"/>
+            <label for="video_delete">Trinti vaizdo įrašus</label>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="reaction_create"/>
+            <label for="reaction_create">Reaguoti</label>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="comment_create"/>
+            <label for="comment_edit">Redaguoti komentarus</label>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="comment_edit"/>
+            <label for="comment_edit">Redaguoti komentarus</label>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="comment_delete"/>
+            <label for="comment_delete">Trinti komentarus</label>
+        </div>
+
+        <h5>Administratoriaus teisės</h5>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="is_admin"/>
+            <label for="is_admin">Sistemos administratorius</label>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="manage_users"/>
+            <label for="manage_users">Valdyti naudotojus</label>
+        </div>
+
+        <div class="form-group d-flex gap-3">
+            <input class="form-check-input" type="checkbox" formControlName="manage_permissions"/>
+            <label for="manage_permissions">Valdyti teisių grupes</label>
+        </div>
+
+        <div class="form-group d-flex gap-3"> 
+            <input class="form-check-input" type="checkbox" formControlName="manage_genres"/>
+            <label for="manage_genres">Valdyti žymas</label>
+        </div>
+
+        
+        <br>
+        <button class="btn btn-dark btn-xs " type="submit"><i class="bi bi-check-lg"></i> Sukurti</button>
+        <button class="btn btn-dark btn-xs " type="button" [routerLink]="['/admin/view-permissions']"><i class="bi bi-arrow-return-left"></i> Grįžti</button>
+        
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error?.group_name}}</div>
+    </form>
+</div>

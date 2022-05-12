@@ -1,0 +1,57 @@
+<div *ngIf="showWindow" class="container">
+    <h3 class="card-header bg-dark text-light">Naudotojų grupių sąrašas</h3>
+    
+    <button class="btn btn-success btn-xs" [routerLink] = "'/admin/add-permission'"><i class="bi bi-plus-lg"></i> Pridėti naują grupę</button>
+        
+    <div class="card">
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Pavadinimas</th>
+            <th scope="col">Vaizdo įrašus kurti</th>
+            <th scope="col">Redaguoti</th>
+            <th scope="col">Trinti</th>
+            <th scope="col">Reaguoti</th>
+            <th scope="col">Komentarus kurti</th>
+            <th scope="col">Redaguoti</th>
+            <th scope="col">Trinti</th>
+            <th scope="col">Administratorius</th>
+            <th scope="col">Valdyti naudotojus</th>
+            <th scope="col">Valdyti teises</th>
+            <th scope="col">Valdyti žymas</th>
+            <th scope="col" style="width: 1%; white-space: nowrap;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr *ngFor="let permission of permissionsList">
+            <th scope="row">{{permission.id}}</th>
+            <td>{{permission.group_name}}</td>
+            <td>{{permission.video_create == true ? 'Taip' : 'Ne'}}</td>
+            <td>{{permission.video_edit == true ? 'Taip' : 'Ne'}}</td>
+            <td>{{permission.video_delete == true ? 'Taip' : 'Ne'}}</td>
+            <td>{{permission.reaction_create == true ? 'Taip' : 'Ne'}}</td>
+            <td>{{permission.comment_create == true ? 'Taip' : 'Ne'}}</td>
+            <td>{{permission.comment_edit == true ? 'Taip' : 'Ne'}}</td>
+            <td style="font-size: 14px; min-height: 48px; text-align: center;border-right: 1px solid black;"
+            >{{permission.comment_delete == true ? 'Taip' : 'Ne'}}
+            </td>
+            <td>{{permission.is_admin == true ? 'Taip' : 'Ne'}}</td>
+            <td>{{permission.manage_users == true ? 'Taip' : 'Ne'}}</td>
+            <td>{{permission.manage_permissions == true ? 'Taip' : 'Ne'}}</td>
+            <td>{{permission.manage_genres == true ? 'Taip' : 'Ne'}}</td>
+            <td class="btn-group" style="width: 1%; white-space: nowrap;">
+                
+              <button type="button" class="btn btn-primary btn-xs" [routerLink] = "'/admin/edit-permission/' + permission.id"><i class="bi bi-pencil"></i> Redaguoti</button>
+              <button type="button" class="btn btn-danger btn-xs" (click)="onDelete(permission.id)"><i class="bi bi-file-x"></i> Trinti</button>
+              
+            </td>
+            <!-- <td><button class="btn btn-danger btn-xs" [routerLink] = "'/admin/ ">Delete</button></td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
+ 

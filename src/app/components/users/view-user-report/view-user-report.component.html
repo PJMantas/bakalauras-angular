@@ -1,0 +1,204 @@
+
+<div class="container">
+  <h3 class="card-header bg-dark text-light" style="text-align: center;">Mano statistika</h3> 
+        
+
+        <br>
+        
+        <div class="row">
+            <div class="card col-sm">
+                <h3>Bendra</h3>
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                <h4 style="text-align:left;">
+                    Mano vaizdo įrašų kiekis :
+                    <span style="float:right;">
+                        {{TotalVideoCount}} 
+                    </span>
+                </h4>
+
+                
+
+                <h4 style="text-align:left;">
+                    Mano vaizdo įrašų peržiūrų skaičius :
+                    <span style="float:right;">
+                        {{TotalVideoViews}}
+                    </span>
+                </h4>
+                
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                <h4 style="text-align:left;">
+                    Mano vaizdo įrašų teigiamų įvertinimų skaičius :
+                    <span style="float:right;">
+                        {{TotalVideoLikes}}
+                    </span>
+                </h4>
+
+                <h4 style="text-align:left;">
+                    Mano vaizdo įrašų neigiamų įvertinimų skaičius: 
+                    <span style="float:right;">
+                        {{TotalVideoDislikes}}
+                    </span>
+                </h4>
+
+                <h4 style="text-align:left;">
+                    Mano vaizdo įrašų komentarų skaičius :
+                    <span style="float:right;">
+                        {{TotalCommentCount}}
+                    </span>
+                </h4>
+                
+            </div>
+            <br>
+            <div class="card col-sm">
+                <h3>Daugiausia peržiūrų turintys vaizdo įrašai</h3>
+                <table class="table table-striped mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Pavadinimas</th>
+                        <th scope="col">Peržiūros</th>
+                        <th scope="col">Teigiami įvertinimai</th>
+                        <th scope="col">Neigiami įvertinimai</th>
+                        <th scope="col" style="width: 1%; white-space: nowrap;"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        
+                      <tr *ngFor="let video of MostViewedVideos">
+                        <th scope="row">{{video.id}}</th>
+                        <td>{{video.title}}</td>
+                        <td>{{video.clicks}}</td>
+                        <td>{{video.likes}}</td>
+                        <td>{{video.dislikes}}</td>
+                        <td class="btn-group" style="width: 1%; white-space: nowrap;">  
+                            <button class="btn btn-primary btn-xs" [routerLink] = "'/viewVideo/' + video.id">Peržiūrėti</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+            </div>
+            
+        </div>
+        <br>
+        <div class="row">
+            <div class="card col-sm">
+                <h3>Daugiausia teigiamų įvertinimų turintys vaizdo įrašai</h3>
+                <table class="table table-striped mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Pavadinimas</th>
+                        <th scope="col">Peržiūros</th>
+                        <th scope="col">Teigiami įvertinimai</th>
+                        <th scope="col">Neigiami įvertinimai</th>
+                        <th scope="col" style="width: 1%; white-space: nowrap;"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        
+                      <tr *ngFor="let video of MostLikedVideos">
+                        <th scope="row">{{video.id}}</th>
+                        <td>{{video.title}}</td>
+                        <td>{{video.clicks}}</td>
+                        <td>{{video.likes}}</td>
+                        <td>{{video.dislikes}}</td>
+                        <td class="btn-group" style="width: 1%; white-space: nowrap;">  
+                            <button class="btn btn-primary btn-xs" [routerLink] = "'/viewVideo/' + video.id">Peržiūrėti</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+            </div>
+           
+            <div class="card col-sm">
+                <h3>Daugiausia neigiamų įvertinimų turintys vaizdo įrašai</h3>
+                <table class="table table-striped mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Pavadinimas</th>
+                        <th scope="col">Peržiūros</th>
+                        <th scope="col">Teigiami įvertinimai</th>
+                        <th scope="col">Neigiami įvertinimai</th>
+                        <th scope="col" style="width: 1%; white-space: nowrap;"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        
+                      <tr *ngFor="let video of MostDislikedVideos">
+                        <th scope="row">{{video.id}}</th>
+                        <td>{{video.title}}</td>
+                        <td>{{video.clicks}}</td>
+                        <td>{{video.likes}}</td>
+                        <td>{{video.dislikes}}</td>
+                        <td class="btn-group" style="width: 1%; white-space: nowrap;">  
+                            <button class="btn btn-primary btn-xs" [routerLink] = "'/viewVideo/' + video.id">Peržiūrėti</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+            </div>
+            
+        </div>
+        <br>
+
+        <div class="card col-sm">
+          <h3>Daugiausia komentarų turintys vaizdo įrašai</h3>
+          <table class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">VideoID</th>
+                  <th scope="col">Pavadinimas</th>
+                  <th scope="col">Komentarų skaičius</th>
+                  <th scope="col" style="width: 1%; white-space: nowrap;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                  
+                <tr *ngFor="let video of MostCommentedVideos">
+                  <th scope="row">{{video.video_id}}</th>
+                  <td>{{video.title}}</td>
+                  <td>{{video.comments}}</td>
+                  <td class="btn-group" style="width: 1%; white-space: nowrap;">  
+                      <button class="btn btn-primary btn-xs" [routerLink] = "'/viewVideo/' + video.video_id">Peržiūrėti</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+      </div>
+
+        <br>
+
+    <div class="row">
+        <div class="col-12 col-md-6" id="divChart">
+            <h3>Peržiūrų skaičius</h3>
+            <canvas id="viewChart"></canvas>
+        </div>
+
+        
+        <div class="col-12 col-md-6" id="divChart">
+            <h3 style="text-align: center;">Komentarų skaičius pagal vaizdo įrašą</h3>
+            <canvas id="commentChart"></canvas>
+        </div>
+
+        
+    </div>
+    <div style="height: fit-content; text-align: center;">
+        <h3>Vaizdo įrašų įvertinimų reitingai pagal datą</h3>
+        <canvas id="ratingChart"></canvas>
+    </div>
+
+</div>
+
+
+
+
+

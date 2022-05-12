@@ -1,0 +1,28 @@
+.search-box {
+  position: relative;
+  display: block;
+  margin: auto;
+  font-family: 'Popins', sans-serif;
+  font-size: 20px;
+
+  max-width: 600px;
+  text-align: center;
+  
+  width: 50%;
+}
+
+
+.btn-primary:active{
+  background: #50b948;
+  border-color: #33912c;
+}
+
+.description {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100%);
+  overflow: hidden;
+}
+
+
+
