@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.VideoService.getRecomendedGenreVideos().subscribe(response => {
-      
       this.RecomendedVideos1 = response['videos1'];
       this.RecomendedVideos2 = response['videos2'];
       this.RecomendedVideos3 = response['videos3'];

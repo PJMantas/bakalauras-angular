@@ -17,7 +17,7 @@ export class UserService {
   }
 
   updateProfile(formBuild) {
-  return this.http.patch<User>(`${environment.api}/user/update-profile/`, formBuild);
+  return this.http.post<User>(`${environment.api}/user/update-profile/`, formBuild);
   }
 
   getUserPermissions() {

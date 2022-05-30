@@ -108,14 +108,12 @@ export class EditProfileComponent implements OnInit {
       formData.append("avatar_url", this.file);
     }
 
-    this.loading = true;
     this.UserService.updateProfile(formData).subscribe(
       data => {
         this.router.navigate(['/profile']);
       },
       error => {
-        this.error = error;
-        this.loading = false;
+        this.error = error.error;
       });
   }
 

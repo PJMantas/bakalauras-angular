@@ -2,33 +2,16 @@
     <h3 class="card-header bg-dark text-light"> Redaguokite savo profilį</h3>
     <form class="card-body" [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
 
-        <div *ngIf="error?.username" class="alert alert-danger mt-3">
-            {{ error?.username }}
-          </div>
-          <div *ngIf="error?.email" class="alert alert-danger mt-3">
-            {{ error?.email }}
-          </div>
-          <div *ngIf="error?.password" class="alert alert-danger mt-3">
-            {{ error?.password }}
-          </div>
-          <div *ngIf="error?.password_confirmation" class="alert alert-danger mt-3">
-            {{ error?.password_confirmation }}
-          </div>
+        
 
         <div class="form-group">
             <label for="email">E. Paštas</label>
-            <input [readonly]="true" type="text" formControlName="email" class="form-control"   [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
-            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-                <div *ngIf="f['email'].errors['required']">E. Paštas yra privalomas</div>
-            </div>
+            <input [readonly]="true" type="text" formControlName="email" class="form-control" />
         </div>
         
         <div class="form-group">
             <label for="username">Slapyvardis</label>
-            <input [readonly]="true" type="text" formControlName="username" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
-            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-                <div *ngIf="f['username'].errors['required']">Slapyvardis yra privalomas</div>
-            </div>
+            <input [readonly]="true" type="text" formControlName="username" class="form-control" />
         </div>
 
         <div class="form-group">
@@ -86,6 +69,23 @@
         <button class="btn btn-success btn-xs " type="submit"><i class="bi bi-check-lg"></i> Atnaujinti</button>
         <button class="btn btn-dark btn-xs " type="button" [routerLink]="['/profile']"><i class="bi bi-arrow-return-left"></i> Grįžti</button>
         
-        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        <div *ngIf="error?.first_name" class="alert alert-danger mt-3">
+            {{ error?.first_name }}
+          </div>
+          <div *ngIf="error?.last_name" class="alert alert-danger mt-3">
+            {{ error?.last_name }}
+          </div>
+          <div *ngIf="error?.age" class="alert alert-danger mt-3">
+            {{ error?.age }}
+          </div>
+          <div *ngIf="error?.country" class="alert alert-danger mt-3">
+            {{ error?.country }}
+          </div>
+          <div *ngIf="error?.city" class="alert alert-danger mt-3">
+            {{ error?.city }}
+          </div>
+          <div *ngIf="error?.group_id" class="alert alert-danger mt-3">
+            {{ error?.group_id }}
+          </div>
     </form>
 </div> 
