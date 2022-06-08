@@ -65,17 +65,14 @@ export class CommentsComponent implements OnInit {
       this.userId = result.id;
     });
 
-
-
-
     this.addCommentForm = this.formBuilder.group({
-      comment_text: ['', Validators.required],
+      comment_text: ['', [Validators.required, Validators.minLength(2)]],
       video_id: this.videoId,
 
     });
 
     this.addReplyForm = this.formBuilder.group({
-      comment_text: ['', Validators.required],
+      comment_text: ['', [Validators.required, Validators.minLength(2)]],
       video_id: this.videoId,
       comment_parent_id: [''],
 
@@ -86,7 +83,7 @@ export class CommentsComponent implements OnInit {
 
     this.editCommentForm = this.formBuilder.group({
       id: [''],
-      comment_text: ['', Validators.required],
+      comment_text: ['', [Validators.required, Validators.minLength(2)]],
     });
   }
 
@@ -98,9 +95,16 @@ export class CommentsComponent implements OnInit {
    
   }
 
+  get f() { return this.addCommentForm.controls; }
+
   onCreateComment() {
     this.submitted = true;
     this.loading = true;
+
+    if (this.addCommentForm.invalid) {
+      return;
+    }
+
     this.CommentService.createComment(this.addCommentForm.value).subscribe(
       data => {
         this.submitted = false;

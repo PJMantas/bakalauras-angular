@@ -18,6 +18,7 @@ export class AddUserComponent implements OnInit {
   userId!: number;
   user: User = new User();
   UserPermissions!: Permission;
+  PermissionsList: Permission[] = [];
   manageUsers = false;
   loading = false;
   submitted = false;
@@ -41,7 +42,7 @@ export class AddUserComponent implements OnInit {
         age: '',
         country: '',
         city: '',
-        group_id: ''
+        group_id: ['', Validators.required]
       });
   }
 
@@ -58,6 +59,10 @@ export class AddUserComponent implements OnInit {
       error => {
         this.router.navigate(['/home']);
       });
+
+    this.PermissionService.getPermissionList().subscribe(response => {
+      this.PermissionsList = response['permissions'];
+    });
   }
 
   get f() { return this.addForm.controls; }
@@ -79,6 +84,12 @@ export class AddUserComponent implements OnInit {
         this.error = error.error;
         this.loading = false;
       });
+  }
+
+  onPermissionChange(event) {
+    this.addForm.patchValue({
+      genre: event.target.value
+    });
   }
 
 }

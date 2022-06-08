@@ -17,6 +17,7 @@ export class EditUserComponent implements OnInit {
   editForm: FormGroup;
   userId!: number;
   user: User = new User();
+  PermissionsList: Permission[] = [];
   UserPermissions!: Permission;
   manageUsers = false;
   loading = false;
@@ -74,10 +75,19 @@ export class EditUserComponent implements OnInit {
         city: this.user.city,
         group_id: [this.user.group_id, Validators.required]
     });
+    this.PermissionService.getPermissionList().subscribe(response => {
+      this.PermissionsList = response['permissions'];
+    });
   })
   }
 
   get f() { return this.editForm.controls; }
+
+  onPermissionChange(event) {
+    this.editForm.patchValue({
+      genre: event.target.value
+    });
+  }
 
   onSubmit(){
     this.submitted = true;

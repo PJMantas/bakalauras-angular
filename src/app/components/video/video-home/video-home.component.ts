@@ -19,6 +19,7 @@ export class VideoHomeComponent implements OnInit {
   GenreList: Genre[] = [];
   toggle = true;
   genreId: number = -1;
+  videoCount: number = 6;
   isSelected: boolean = false;
   orderType = 'asc';
   orderField = 'created_at';
@@ -50,7 +51,7 @@ export class VideoHomeComponent implements OnInit {
       this.GenreList = result['genres'];
     });
 
-    this.VideoService.getVideosList().subscribe(result => {
+    this.VideoService.getVideosList(this.videoCount).subscribe(result => {
       this.VideoList = result['videos'];
     }
     )};
@@ -78,7 +79,7 @@ export class VideoHomeComponent implements OnInit {
     if(this.genreId === genreId) 
     {
       this.genreId = -1;
-      this.VideoService.getVideosList().subscribe(result => {
+      this.VideoService.getVideosList(this.videoCount).subscribe(result => {
         this.VideoList = result['videos'];
       });
     } 
@@ -126,6 +127,13 @@ export class VideoHomeComponent implements OnInit {
     });
    
     this.VideoService.getOrderedVideosByGenre(this.filterForm.value).subscribe(result => {
+      this.VideoList = result['videos'];
+    });
+  }
+
+  onLoadMoreVideos() {
+    this.videoCount += 7;
+    this.VideoService.getVideosList(this.videoCount).subscribe(result => {
       this.VideoList = result['videos'];
     });
   }

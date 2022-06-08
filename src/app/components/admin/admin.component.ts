@@ -13,8 +13,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
-  UsersList:User[] = [];
-  UserPermissions!:Permission;
+  UsersList: User[] = [];
+  UserPermissions!: Permission;
+  PermissionsList: Permission[] = [];
   showWindow = false;
   manageUsers = false;
   managePermissions = false;
@@ -49,10 +50,14 @@ export class AdminComponent implements OnInit {
       error => {
         this.router.navigate(['/home'])
       });
+      
 
     this.AdminService.getUserList().subscribe(result => {
       this.UsersList = result['users'];
     })
+    this.PermissionService.getPermissionList().subscribe(response => {
+      this.PermissionsList = response['permissions'];
+    });
   }
 
   onDelete(userId){

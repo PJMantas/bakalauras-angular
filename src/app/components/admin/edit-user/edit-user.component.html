@@ -63,7 +63,10 @@
 
         <div class="form-group">
             <label for="group_id">Leidimų grupės nr.</label>
-            <input type="text" formControlName="group_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['group_id'].errors }" />
+            <select formControlName="group_id" class="form-control" (change)="onPermissionChange($event)" [ngClass]="{ 'is-invalid': submitted && f['group_id'].errors }">
+                <option disabled>Pasirinkite leidimų grupę</option>
+                <option *ngFor="let permission of PermissionsList" [value]="permission.id">{{permission.group_name}}</option>
+            </select>
             <div *ngIf="submitted && f['group_id'].errors" class="invalid-feedback">
                 <div *ngIf="f['group_id'].errors['required']">Leidimų grupės nr. yra privalomas</div>
             </div>

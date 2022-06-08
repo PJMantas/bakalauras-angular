@@ -13,8 +13,8 @@ export class VideoService {
   getVideoById(id: number) {
     return this.http.get<Video>(`${environment.api}/video/get-video/`, {params: {id}});
   }
-  getVideosList() {
-    return this.http.get<Video>(`${environment.api}/video/get-videos-list/`);
+  getVideosList(videoCount: number) {
+    return this.http.get<Video>(`${environment.api}/video/get-videos-list/`, {params: {videoCount}});
   }
   createVideo(formBody) {
     return this.http.post<Video>(`${environment.api}/video/create-video/`, formBody );
